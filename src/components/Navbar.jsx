@@ -84,6 +84,7 @@ const Navbar = () => {
           <Logo>FORBES</Logo>
         </Center>
         <Right>
+         <MenuItem><Link to={"/"}>HOME</Link></MenuItem>
           <MenuItem><Link to={"/products"}>PRODUCTS</Link></MenuItem>
           <MenuItem><Link to={"/register"}>REGISTER</Link></MenuItem>
           <MenuItem><Link to={"/login"}>SIGN IN</Link></MenuItem>

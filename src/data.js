@@ -1,7 +1,7 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://fsstnl.com/static/media/tt.8d67f5126f1487b110a1.jpg",
+      img: "https://etap.com/images/default-source/product/photovoltaic-solar-panels/etap-photovoltaic-array-analysis-3.jpg?sfvrsn=b8a2bf7f_6",
       title: "Sustainable Renewable Energy",
       desc: "#1 Solar rent to own service provider for micro-businesses in Nigeria!.",
       bg: "ffffff",

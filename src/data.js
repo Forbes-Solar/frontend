@@ -77,3 +77,14 @@ export const sliderItems = [
       img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
     },
   ]
+
+  export const featureItems = [
+    {
+      id: 1,
+      img: "https://etap.com/images/default-source/product/photovoltaic-solar-panels/etap-photovoltaic-array-analysis-3.jpg?sfvrsn=b8a2bf7f_6",
+      title: "Sustainable Renewable Energy",
+      desc: "#1 Solar rent to own service provider for micro-businesses in Nigeria!.",
+      bg: "ffffff",
+    },
+   
+  ];

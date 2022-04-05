@@ -17,6 +17,7 @@ const Image = styled.img`
 
 `;
 
+
 const Info = styled.div`
   position: absolute;
   top: 0;
@@ -32,6 +33,7 @@ const Info = styled.div`
 const Title = styled.h1`
     color:#FAA711;;
     margin-bottom: 20px;
+    text-align: center;
 `;
 
 const Button = styled.button`
@@ -46,6 +48,7 @@ const Button = styled.button`
 const CategoryItem = ({ item }) => {
   return (
     <Container>
+    
       <Link to={`/products/${item.cat}`}>
       <Image src={item.img} />
       <Info>

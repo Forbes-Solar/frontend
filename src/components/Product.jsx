@@ -47,10 +47,14 @@ const Circle = styled.div`
 `;
 
 
-const Title = styled.div`
-  width: 100px;
-  height: 100px;
-  position: absolute;
+const Title = styled.h1`
+  font-weight: 200px;
+  color: #FAA711;
+`;
+
+const Price = styled.h4`
+  font-weight: 300px;
+  color: #FAA711;
 `;
 
 const Image = styled.img`
@@ -76,10 +80,12 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
   return (
+    <div>
     <Container>
+      
       <Circle />
       <Image src={item.img} />
-      <Title src ={item.title}/>
+     
       <Info>
         <Icon>
           <ShoppingCartOutlined />
@@ -93,7 +99,11 @@ const Product = ({ item }) => {
           <FavoriteBorderOutlined />
         </Icon>
       </Info>
+     
     </Container>
+    <Title>{item.title}</Title>
+    <Price>$ {item.price} </Price>
+    </div>
   );
 };
 

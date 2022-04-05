@@ -11,13 +11,21 @@ const Container = styled.div`
 
 `;
 
+const Title = styled.h1`
+    color:#FAA711;;
+    margin-bottom: 20px;
+`;
+
 const Categories = () => {
   return (
+    <div><Title>CATEGORIES</Title> 
     <Container>
+       
       {categories.map((item) => (
         <CategoryItem item={item} key={item.id} />
       ))}
     </Container>
+    </div>
   );
 };
 

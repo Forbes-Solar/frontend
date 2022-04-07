@@ -3,8 +3,10 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
+
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Naira from "react-naira"
 
 const Info = styled.div`
   opacity: 0;
@@ -47,14 +49,16 @@ const Circle = styled.div`
 `;
 
 
-const Title = styled.h1`
-  font-weight: 200px;
-  color: #FAA711;
+const Title = styled.h3`
+  text-align: center;
+  font-weight: 50px;
+ 
 `;
 
 const Price = styled.h4`
+  text-align: center;
   font-weight: 300px;
-  color: #FAA711;
+ 
 `;
 
 const Image = styled.img`
@@ -102,7 +106,7 @@ const Product = ({ item }) => {
      
     </Container>
     <Title>{item.title}</Title>
-    <Price>$ {item.price} </Price>
+    <Price><Naira>{item.price}</Naira> </Price>
     </div>
   );
 };

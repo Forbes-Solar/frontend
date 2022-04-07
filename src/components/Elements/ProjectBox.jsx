@@ -15,10 +15,12 @@ export default function ProjectBox({ img, title, text, action}) {
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 50%;
   margin-top: 30px;
+ 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     margin: 20px 0;
   }
   h3 {

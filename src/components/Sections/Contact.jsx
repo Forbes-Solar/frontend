@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import TopNavbar from "../Nav/TopNavbar"
+import Footer from "./Footer"
 // Assets
 // import ContactImg1 from "../../assets/img/contact-1.png";
 // import ContactImg2 from "../../assets/img/contact-2.png";
@@ -8,6 +10,7 @@ import styled from "styled-components";
 export default function Contact() {
   return (
     <Wrapper id="contact">
+      <TopNavbar/>
       <div className="lightBg">
         <div className="container">
           <HeaderInfo>
@@ -48,7 +51,9 @@ export default function Contact() {
             </div> */}
           </div>
         </div>
+        <Footer/>
       </div>
+     
     </Wrapper>
   );
 }

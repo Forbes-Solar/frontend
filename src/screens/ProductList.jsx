@@ -1,7 +1,7 @@
 import styled from "styled-components";
-
+import TopNavbar from "../components/Nav/TopNavbar";
 import Products from "../components/Sections/Products";
-
+// import { mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useState } from "react";
 
@@ -18,7 +18,7 @@ const FilterContainer = styled.div`
 
 const Filter = styled.div`
   margin: 20px;
-  $({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+  ${({ width: "0px 20px", display: "flex", flexDirection: "column" })}
 `;
 
 const FilterText = styled.span`
@@ -51,7 +51,7 @@ const ProductList = () => {
 
   return (
     <Container>
-  
+     <TopNavbar/>
     
       <Title>{cat}</Title>
       <FilterContainer>

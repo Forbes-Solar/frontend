@@ -1,21 +1,38 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+
+// import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 
 // Screens
 import Landing from "./screens/Landing.jsx";
-// import ProductList from "./screens/Landing.jsx";
+import ProductList from "./screens/ProductList.jsx";
+import Product from "./screens/Product.jsx";
+import Cart from "./screens/Cart.jsx";
+import Login from "./screens/Login.jsx";
+import Register from "./screens/Register.jsx";
+import Services from "./components/Sections/Services"
+import Contact from "./components/Sections/Contact"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-export default function App() {
+function App() {
+  const user = useSelector((state) => state.user.currentUser);
   return (
-    <>
-      <Helmet>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Khula:wght@400;600;800&display=swap" rel="stylesheet" />
-      </Helmet>
-      <Landing />
-      
-    </>
+    
+    <Router>
+     
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/about" element={<Services />} />
+        <Route path="/register" element={user ? <Navigate to ="/products" /> : <Register />} />
+        <Route path="/login" element={user ? <Navigate to ="/products" /> : <Login/> } />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
 

@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 // Components
 // import ClientSlider from "../Elements/ClientSlider";
+import TopNavbar from "../Nav/TopNavbar"
 import ServiceBox from "../Elements/ServiceBox";
 import FullButton from "../Buttons/FullButton";
+import Footer from "./Footer"
+// import Teams from "./Teams"
 // Assets
 // import AddImage1 from "../../assets/img/add/1.png";
 // import AddImage2 from "../../assets/img/add/2.png";
@@ -18,46 +21,8 @@ export default function Services() {
           <ClientSlider />
         </div>
       </div> */}
-      <div className="whiteBg" style={{ padding: "60px 0" }}>
-        <div className="container">
-          <HeaderInfo>
-            <h1 className="font40 extraBold">Our Mission</h1>
-            <p className="font13">
-            Make acquisition of productive-use solar equipment easy and affordable 
-
-              <br />
-              to homes and micro-businesses  in Nigeria
-            </p>
-          </HeaderInfo>
-          <ServiceBoxRow className="flex">
-            <ServiceBoxWrapper>
-              <ServiceBox
-                icon="roller"
-                title="Accountable"
-                
-              />
-            </ServiceBoxWrapper>
-            <ServiceBoxWrapper>
-              <ServiceBox
-                icon="monitor"
-                title="Respectful"
-                
-              />
-            </ServiceBoxWrapper>
-            <ServiceBoxWrapper>
-              <ServiceBox
-                icon="browser"
-                title="Innovative"
-                
-              />
-            </ServiceBoxWrapper>
-            <ServiceBoxWrapper>
-              <ServiceBox icon="printer" title="Transparent" 
-               />
-            </ServiceBoxWrapper>
-          </ServiceBoxRow>
-        </div>
-        <div className="lightBg">
+      <TopNavbar/>
+      <div className="lightBg">
           <div className="container">
             <Advertising className="flexSpaceCenter">
               <AddLeft>
@@ -98,7 +63,49 @@ export default function Services() {
             </Advertising>
           </div>
         </div>
+      <div className="whiteBg" style={{ padding: "60px 0" }}>
+        <div className="container">
+          <HeaderInfo>
+            <h1 className="font40 extraBold">Our Mission</h1>
+            <p className="font13">
+            Make acquisition of productive-use solar equipment easy and affordable 
+
+              <br />
+              to homes and micro-businesses  in Nigeria
+            </p>
+          </HeaderInfo>
+          <ServiceBoxRow className="flex">
+            <ServiceBoxWrapper>
+              <ServiceBox
+                icon="roller"
+                title="Accountable"
+                
+              />
+            </ServiceBoxWrapper>
+            <ServiceBoxWrapper>
+              <ServiceBox
+                icon="monitor"
+                title="Respectful"
+                
+              />
+            </ServiceBoxWrapper>
+            <ServiceBoxWrapper>
+              <ServiceBox
+                icon="browser"
+                title="Innovative"
+                
+              />
+            </ServiceBoxWrapper>
+            <ServiceBoxWrapper>
+              <ServiceBox icon="printer" title="Transparent" 
+               />
+            </ServiceBoxWrapper>
+          </ServiceBoxRow>
+        </div>
+        
       </div>
+     
+      <Footer/>
     </Wrapper>
   );
 }
@@ -124,9 +131,11 @@ const ServiceBoxWrapper = styled.div`
 const HeaderInfo = styled.div`
   @media (max-width: 860px) {
     text-align: center;
+    
   }
 `;
 const Advertising = styled.div`
+margin-top: 50px;
   margin: 80px 0;
   padding: 100px 0;
   position: relative;

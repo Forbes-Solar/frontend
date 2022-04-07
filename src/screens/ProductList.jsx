@@ -17,6 +17,7 @@ const FilterContainer = styled.div`
 `;
 
 const Filter = styled.div`
+margin-top: 20px;
   margin: 20px;
   ${({ width: "0px 20px", display: "flex", flexDirection: "column" })}
 `;

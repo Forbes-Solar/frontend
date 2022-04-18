@@ -7,6 +7,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
+import  Naira from "react-naira"
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -176,7 +177,7 @@ const Cart = () => {
     <Container>
     
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>CART</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           
@@ -208,7 +209,9 @@ const Cart = () => {
                     <Remove />
                   </ProductAmountContainer>
                   <ProductPrice>
-                    $ {product.price * product.quantity}
+                  <Naira>
+                    {product.price * product.quantity}
+                  </Naira>
                   </ProductPrice>
                 </PriceDetail>
               </Product>
@@ -219,7 +222,7 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice><Naira>{cart.total}</Naira> </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -231,7 +234,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice><Naira>{cart.total}</Naira> </SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
               name="Forbes"

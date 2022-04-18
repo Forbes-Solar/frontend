@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import Naira from "react-naira"
 
-const Container = styled.div``;
+
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -84,7 +85,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: "75%" })}
 `;
 
 const AmountContainer = styled.div`
@@ -149,7 +150,7 @@ const Product = () => {
     );
   };
   return (
-    <Container>
+   
       
       <Wrapper>
         <ImgContainer>
@@ -158,7 +159,8 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
-          <Price>$ {product.price}</Price>
+          
+          <Price><Naira>{product.price}</Naira></Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
@@ -186,7 +188,7 @@ const Product = () => {
         </InfoContainer>
       </Wrapper>
      
-    </Container>
+   
   );
 };
 

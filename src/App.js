@@ -1,7 +1,7 @@
 import React from "react";
 
 // import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 // Screens
 import Landing from "./screens/Landing.jsx";
@@ -12,10 +12,10 @@ import Login from "./screens/Login.jsx";
 import Register from "./screens/Register.jsx";
 import Services from "./components/Sections/Services"
 import Contact from "./components/Sections/Contact"
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const user = useSelector((state) => state.user.currentUser);
+  // const user = useSelector((state) => state.user.currentUser);
   return (
     
     <Router>
@@ -27,8 +27,8 @@ function App() {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<Services />} />
-        <Route path="/register" element={user ? <Navigate to ="/products" /> : <Register />} />
-        <Route path="/login" element={user ? <Navigate to ="/products" /> : <Login/> } />
+        <Route path="/register" element={ <Register />} />
+        <Route path="/login" element={ <Login/> } />
       </Routes>
     </Router>
   );

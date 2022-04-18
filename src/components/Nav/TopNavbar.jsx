@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 // Components
 import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
@@ -66,6 +67,11 @@ export default function TopNavbar() {
             <li className="semiBold font15 pointer flexCenter">
               <Link to="/Register" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
                 Get Started
+              </Link>
+            </li>
+            <li className="semiBold font15 pointer">
+              <Link activeClass="active" style={{ padding: "10px 15px" }} to="/cart" spy={true} smooth={true} offset={-80}>
+               <ShoppingCartIcon/>
               </Link>
             </li>
           </UlWrapperRight>

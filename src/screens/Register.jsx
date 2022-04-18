@@ -1,5 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { register } from "../redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
 import TopNavbar from "../components/Nav/TopNavbar";
 
 const Container = styled.div`TopNavbar
@@ -56,23 +59,35 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching } = useSelector((state) => state.user);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    register(dispatch, { username, password, email, name, lastname });
+  };
   return (
     <Container>
       <TopNavbar/>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input placeholder="name" onChange={(e) => setName(e.target.value)} />
+          <Input placeholder="last name" onChange={(e) => setLastName(e.target.value)} />
+          <Input placeholder="username"onChange={(e) => setUsername(e.target.value)} />
+          <Input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+          <Input placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+          <Input placeholder="confirm password" onChange={(e) => setPassword(e.target.value)} />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleClick} disabled={isFetching}> CREATE</Button>
         </Form>
       </Wrapper>
     </Container>

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { register } from "../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
+import  AuthService  from "../redux/apiCalls";
+
 import TopNavbar from "../components/Nav/TopNavbar";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`TopNavbar
   width: 100vw;
@@ -59,24 +60,39 @@ const Button = styled.button`
 `;
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const dispatch = useDispatch();
-  const { isFetching } = useSelector((state) => state.user);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    register(dispatch, { username, password, email, name, lastname });
-  };
+  
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+  
+    const navigate = useNavigate();
+  
+    const handleSignup = async (e) => {
+      e.preventDefault();
+      try {
+        await AuthService.signup(email, password, name, username, lastName).then(
+          (response) => {
+            // check for token and user already exists with 200
+              console.log("Sign up successfully", response);
+            // navigate("/");
+            // window.location.reload();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    };
   return (
     <Container>
       <TopNavbar/>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
+        <Form onSubmit ={handleSignup}>
           <Input placeholder="name" onChange={(e) => setName(e.target.value)} />
           <Input placeholder="last name" onChange={(e) => setLastName(e.target.value)} />
           <Input placeholder="username"onChange={(e) => setUsername(e.target.value)} />
@@ -87,7 +103,7 @@ const Register = () => {
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button onClick={handleClick} disabled={isFetching}> CREATE</Button>
+          <Button type="submit">Sign up</Button>
         </Form>
       </Wrapper>
     </Container>

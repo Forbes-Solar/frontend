@@ -1,11 +1,13 @@
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-
+import TopNavbar from "../components/Nav/TopNavbar";
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
+import { removeProduct } from "../redux/cartRedux";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import  Naira from "react-naira"
 
@@ -32,6 +34,7 @@ const Top = styled.div`
 
 const TopButton = styled.button`
   padding: 10px;
+  margin-top: 10px;
   font-weight: 600;
   cursor: pointer;
   border: ${(props) => props.type === "filled" && "none"};
@@ -150,10 +153,24 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const Removebutton = styled.button`
+  padding: 15px;
+  border: 2px solid teal;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #f8f4f4;
+  }
+`;
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const history = useNavigate();
+  const dispatch = useDispatch();
+ 
+
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -173,10 +190,17 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   });
+
+  const handleClick = () => {
+    dispatch(
+      removeProduct()
+    );
+  };
   return (
     <Container>
     
       <Wrapper>
+        <TopNavbar/>
         <Title>CART</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
@@ -214,6 +238,7 @@ const Cart = () => {
                   </Naira>
                   </ProductPrice>
                 </PriceDetail>
+                <Removebutton onClick={handleClick}>Remove</Removebutton>
               </Product>
             ))}
             <Hr />

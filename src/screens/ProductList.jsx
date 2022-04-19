@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import TopNavbar from "../components/Nav/TopNavbar";
 import Products from "../components/Sections/Products";
-// import { mobile } from "../responsive";
+import { mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useState } from "react";
 
-const Container = styled.div``;
+const Container = styled.div`
+${mobile({flexDirection: "column" })}
+`;
 
 const Title = styled.h1`
   margin: 20px;
@@ -17,7 +19,7 @@ const FilterContainer = styled.div`
 `;
 
 const Filter = styled.div`
-margin-top: 20px;
+ margin-top: 20px;
   margin: 20px;
   ${({ width: "0px 20px", display: "flex", flexDirection: "column" })}
 `;

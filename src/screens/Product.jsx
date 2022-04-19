@@ -7,6 +7,7 @@ import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import Naira from "react-naira"
+import TopNavbar from "../components/Nav/TopNavbar";
 
 
 
@@ -153,6 +154,7 @@ const Product = () => {
    
       
       <Wrapper>
+        <TopNavbar/>
         <ImgContainer>
           <Image src={product.img} />
         </ImgContainer>

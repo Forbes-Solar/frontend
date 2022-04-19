@@ -1,24 +1,51 @@
-import { loginFailure, loginStart, loginSuccess, registerSuccess, registerStart, registerFailure } from "./userRedux";
-import { publicRequest } from "../requestMethods";
+import axios from "axios";
 
-export const login = async (dispatch, user) => {
-  dispatch(loginStart());
-  try {
-    const res = await publicRequest.post("/auth/login", user);
-    dispatch(loginSuccess(res.data));
-  } catch (err) {
-    dispatch(loginFailure());
-  }
+const API_URL = "http://localhost:5000/api/auth";
+
+const signup = (username, password, email) => {
+  return axios
+    .post(API_URL + "/register", {
+      username,
+      password,
+      email,
+    })
+    .then((response) => {
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      console.log(response.data)
+      return response.data;
+    });
 };
 
-export const register = async (dispatch, user) => {
-  dispatch(registerStart)
-  try {
-    const res = await publicRequest.post("auth/register", user)
-    dispatch(registerSuccess(res.data))
-  } catch (error) {
-    dispatch(registerFailure())
-  }
-    
+const login = (username, password) => {
+  return axios
+    .post(API_URL + "/login", {
+      username,
+      password,
+    })
+    .then((response) => {
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+console.log(response.data)
+      return response.data;
+    });
+};
 
-}
+const logout = () => {
+  localStorage.removeItem("user");
+};
+
+const getCurrentUser = () => {
+  return JSON.parse(localStorage.getItem("user"));
+};
+
+const authService = {
+  signup,
+  login,
+  logout,
+  getCurrentUser,
+};
+
+export default authService;

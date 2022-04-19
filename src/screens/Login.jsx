@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { login } from "../redux/apiCalls";
+import  AuthService  from "../redux/apiCalls";
 import { mobile } from "../responsive";
-import { useDispatch, useSelector } from "react-redux";
 import TopNavbar from "../components/Nav/TopNavbar";
+import {useNavigate} from "react-router-dom"
 
 const Container = styled.div`
   width: 100vw;
@@ -67,22 +67,36 @@ const Link = styled.a`
 
 
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const { isFetching } = useSelector((state) => state.user);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    login(dispatch, { username, password });
-  };
+  const Login = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+  
+    const navigate = useNavigate();
+  
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      try {
+        await AuthService.login(username, password).then(
+          () => {
+            navigate("/products");
+            // window.location.reload();
+            
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    };
   return (
     <Container>
-      <TopNavbar/>n
+      <TopNavbar/>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
+        <Form onSubmit={handleLogin }>
           <Input
             placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
@@ -92,7 +106,7 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} disabled={isFetching}>
+          <Button >
             LOGIN
           </Button>
          

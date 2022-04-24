@@ -1,6 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import cartReducer from "./cartRedux";
-import userReducer from "./userRedux";
+import cartReducer, { getTotals } from "./cartSlice";
+import authReducer from "./authSlice";
+import productsReducer , { productsFetch } from "./productsSlice"
+import { productsApi } from "./productsApi"
 import {
   persistStore,
   persistReducer,
@@ -19,7 +21,12 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
+const rootReducer = combineReducers(
+  { auth: authReducer,
+   cart: cartReducer,
+   products: productsReducer,
+   [productsApi.reducerPath]: productsApi.reducer,
+  });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -32,5 +39,8 @@ export const store = configureStore({
       },
     }),
 });
+
+store.dispatch(productsFetch());
+store.dispatch(getTotals());
 
 export let persistor = persistStore(store);

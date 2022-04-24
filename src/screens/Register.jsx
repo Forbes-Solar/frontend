@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import  AuthService  from "../redux/apiCalls";
-
+import  { registerUser } from "../redux/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import TopNavbar from "../components/Nav/TopNavbar";
 import { useNavigate } from "react-router-dom";
 
@@ -61,44 +61,42 @@ const Button = styled.button`
 
 const Register = () => {
   
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-  
-    const navigate = useNavigate();
-  
-    const handleSignup = async (e) => {
-      e.preventDefault();
-      try {
-        await AuthService.signup(email, password, name, username, lastName).then(
-          (response) => {
-            // check for token and user already exists with 200
-              console.log("Sign up successfully", response);
-            // navigate("/");
-            // window.location.reload();
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+
+  const [user, setUser] = useState({
+   
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    if (auth._id) {
+      navigate("/cart");
+    }
+  }, [auth._id, navigate]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(user);
+    dispatch(registerUser(user));
+  };
   return (
     <Container>
       <TopNavbar/>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form onSubmit ={handleSignup}>
-          <Input placeholder="name" onChange={(e) => setName(e.target.value)} />
-          <Input placeholder="last name" onChange={(e) => setLastName(e.target.value)} />
-          <Input placeholder="username"onChange={(e) => setUsername(e.target.value)} />
-          <Input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-          <Input placeholder="password" onChange={(e) => setPassword(e.target.value)} />
-          <Input placeholder="confirm password" onChange={(e) => setPassword(e.target.value)} />
+        <Form onSubmit ={handleSubmit}>
+          <Input placeholder="name" onChange={(e) => setUser({ ...user, name: e.target.value })}/>
+          <Input placeholder="last name" onChange={(e) => setUser({ ...user, lastname: e.target.value })} />
+         
+          <Input placeholder="email" onChange={(e) => setUser({ ...user, email: e.target.value })} />
+          <Input placeholder="password" onChange={(e) => setUser({ ...user, password: e.target.value })} />
+          <Input placeholder="confirm password" onChange={(e) => setUser({ ...user, password: e.target.value })}/>
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>

@@ -4,10 +4,11 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { addProduct } from "../redux/cartRedux";
+import { addToCart } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import Naira from "react-naira"
 import TopNavbar from "../components/Nav/TopNavbar";
+
 
 
 
@@ -126,11 +127,13 @@ const Product = () => {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
+  
+
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get("/products/find/" + id);
+        const res = await  publicRequest.get("/products/find/" + id);
         setProduct(res.data);
       } catch {}
     };
@@ -147,7 +150,7 @@ const Product = () => {
 
   const handleClick = () => {
     dispatch(
-      addProduct({ ...product, quantity, color, size })
+      addToCart({ ...product, quantity, color, size })
     );
   };
   return (

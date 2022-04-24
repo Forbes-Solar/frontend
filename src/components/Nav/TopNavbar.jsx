@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import {logoutUser} from "../../redux/authSlice"
 import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { toast } from "react-toastify";
 // Components
 import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
@@ -20,7 +23,10 @@ export default function TopNavbar() {
     };
   }, [y]);
 
-  
+  const dispatch = useDispatch();
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
+ 
 
 
   return (
@@ -61,19 +67,44 @@ export default function TopNavbar() {
             </li>
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
-            <li className="semiBold font15 pointer">
-              <Link to="/login" style={{ padding: "10px 30px 10px 0" }}>
-                Log in
+           {auth._id ? (
+             <>
+             <li className="semiBold font15 pointer">
+              <Link to="/" style={{ padding: "10px 30px 10px 0" }} onClick={() => {
+            dispatch(logoutUser(null));
+            toast.warning("Logged out!", { position: "bottom-left" });
+          }}>
+                Logout
               </Link>
             </li>
-            <li className="semiBold font15 pointer flexCenter">
+            <li className="semiBold font15 pointer">
+              <Link to="/" style={{ padding: "10px 30px 10px 0" }}>
+                {auth.username}
+              </Link>
+            </li>
+             </>
+              
+            
+           ) : (
+             <>
+            <li className="semiBold font15 pointer">
+            <Link to="/login" style={{ padding: "10px 30px 10px 0" }}>
+              Log in
+            </Link>
+          </li>
+
+          <li className="semiBold font15 pointer flexCenter">
               <Link to="/Register" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
                 Get Started
               </Link>
-            </li>
+            </li>  
+          </>
+           )}
+           
             <li className="semiBold font15 pointer">
               <Link activeClass="active" style={{ padding: "10px 15px" }} to="/cart" spy={true} smooth={true} offset={-80}>
                <ShoppingCartIcon/>
+               <span>{cartTotalQuantity}</span>
               </Link>
             </li>
           </UlWrapperRight>

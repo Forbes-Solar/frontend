@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux"
+import {logoutUser} from "../../redux/authSlice"
+import { toast } from "react-toastify";
+
 import { Link } from "react-router-dom";
 // Assets
 import CloseIcon from "../../assets/svg/CloseIcon";
 import LogoIcon from "../../assets/svg/Logo";
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
+  const dispatch = useDispatch();
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
+
   return (
     <Wrapper className="animate darkBg" sidebarOpen={sidebarOpen}>
       <SidebarHeader className="flexSpaceCenter">
@@ -61,20 +69,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             Products
           </Link>
         </li>
-        <li className="semiBold font15 pointer">
-          <Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="projects"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Projects
-          </Link>
-        </li>
+        
         
         
         <li className="semiBold font15 pointer">
@@ -93,7 +88,18 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         </li>
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
-        <li className="semiBold font15 pointer">
+        {auth._id ? (
+          <li className="semiBold font15 pointer">
+          <Link to="/ 	1" style={{ padding: "10px 30px 10px 0" }} className="whiteColor" onClick={() => {
+            dispatch(logoutUser(null));
+            toast.warning("Logged out!", { position: "bottom-left" });
+          }} >
+            Logout
+          </Link>
+        </li>
+        ) : (
+          <>
+            <li className="semiBold font15 pointer">
           <a href="/login" style={{ padding: "10px 30px 10px 0" }} className="whiteColor">
             Log in
           </a>
@@ -103,6 +109,9 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             Get Started
           </a>
         </li>
+          </>
+        )}
+        
       </UlStyle>
     </Wrapper>
   );

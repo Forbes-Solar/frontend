@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState }  from "react";
 import styled from "styled-components";
-import  AuthService  from "../redux/apiCalls";
+import  { loginUser } from "../redux/authSlice";
 import { mobile } from "../responsive";
 import TopNavbar from "../components/Nav/TopNavbar";
 import {useNavigate} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 
 const Container = styled.div`
   width: 100vw;
@@ -69,47 +70,46 @@ const Link = styled.a`
 
 
   const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-  
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth);
   
-    const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        await AuthService.login(username, password).then(
-          () => {
-            navigate("/products");
-            // window.location.reload();
-            
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      } catch (err) {
-        console.log(err);
+    const [user, setUser] = useState({
+      email: "",
+      password: "",
+    });
+  
+    useEffect(() => {
+      if (auth._id) {
+        navigate("/products");
       }
+    }, [auth._id, navigate]);
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+     
+      dispatch(loginUser(user));
     };
   return (
     <Container>
       <TopNavbar/>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form onSubmit={handleLogin }>
+        <Form onSubmit={handleSubmit }>
           <Input
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="email"
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
           <Input
             placeholder="password"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
           <Button >
-            LOGIN
+          {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
           </Button>
-         
+          {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>
         </Form>

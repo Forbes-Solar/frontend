@@ -1,7 +1,7 @@
 import React from "react";
-
+import "./App.css";
 // import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
+// import { useState, useEffect } from "react";
 
 // Screens
 import Landing from "./screens/Landing.jsx";
@@ -12,14 +12,25 @@ import Login from "./screens/Login.jsx";
 import Register from "./screens/Register.jsx";
 import Services from "./components/Sections/Services"
 import Contact from "./components/Sections/Contact"
+import {loadUser} from "./redux/authSlice";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser(null));
+  }, [dispatch]);
+
+
   return (
     
     <Router>
-     
+     <ToastContainer />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/products" element={<ProductList />} />
@@ -29,6 +40,7 @@ function App() {
         <Route path="/about" element={<Services />} />
         <Route path="/register" element={ <Register />} />
         <Route path="/login" element={ <Login/> } />
+        <Route path= "/logout" element = {<logOut/>} />
       </Routes>
     </Router>
   );

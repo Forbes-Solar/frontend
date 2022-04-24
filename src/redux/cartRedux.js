@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {ToastContainer, toast } from "react-toastify";
+
+
 
 const cartSlice = createSlice({
   name: "cart",
@@ -8,19 +11,24 @@ const cartSlice = createSlice({
     total: 0,
   },
   reducers: {
-    addProduct: (state, action) => {
+    addToCart: (state, action) => {
       state.quantity += 1;
       state.products.push(action.payload);
       state.total += action.payload.price * action.payload.quantity;
+      
+      toast.success("Product added to cart 🛒",{position:"top-center"});
+      <ToastContainer/>
     },
-    removeProduct: (state, action) => {
+
+    removeFromCart: (state, action) => {
+     
       state.quantity -= 1;
       state.products.pop(action.payload);
-      state.total -= action.payload.price * action.payload.quantity;
-     
-    }
+      // state.total -= action.payload.price*action.payload.quantity;
+  toast.error("Product removed from cart 🗑",{position:"top-center"})
+    },
   },
 });
 
-export const { addProduct, removeProduct } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -7,7 +7,7 @@ import Naira from "react-naira"
 
 
 const Home = () => {
-  const { items:  status } = useSelector((state) => state.products);
+  const { items:products,  status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   
 

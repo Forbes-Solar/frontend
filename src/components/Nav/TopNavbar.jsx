@@ -79,7 +79,7 @@ export default function TopNavbar() {
             </li>
             <li className="semiBold font15 pointer">
               <Link to="/" style={{ padding: "10px 30px 10px 0" }}>
-                {auth.username}
+                {auth.token.name}
               </Link>
             </li>
              </>

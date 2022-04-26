@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import { addToCart } from "../redux/cartSlice";
 import { useGetAllProductsQuery } from "../redux/productsApi";
 import TopNavbar from "../components/Nav/TopNavbar";
+import Naira from "react-naira"
+
 
 const Home = () => {
   const { items: products, status } = useSelector((state) => state.products);
@@ -23,6 +25,7 @@ const Home = () => {
         <>
           <h2>New Arrivals</h2>
           <div className="products">
+            {isLoading}
             {data &&
               data?.map((product) => (
                 <div key={product.id} className="product">
@@ -32,7 +35,7 @@ const Home = () => {
                   <div className="details">
                     <span>{product.desc}</span>
                   </div>
-                    <span className="price">${product.price}</span>
+                    <span className="price"><Naira>{product.price}</Naira></span>
                 
                   <button onClick={() => handleAddToCart(product)}>
                     Add To Cart

@@ -109,7 +109,7 @@ const Link = styled.a`
           <Button >
           {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
           </Button>
-          {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
+          {/* {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null} */}
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>
         </Form>

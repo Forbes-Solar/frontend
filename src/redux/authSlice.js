@@ -5,7 +5,7 @@ import { url, setHeaders } from "./api";
 
 const initialState = {
   token: localStorage.getItem("token"),
-  username: "",
+  name: "",
   email: "",
   _id: "",
   registerStatus: "",

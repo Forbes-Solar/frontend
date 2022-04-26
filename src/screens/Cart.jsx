@@ -12,6 +12,7 @@ import {
   removeFromCart,
 } from "../redux/cartSlice";
 import TopNavbar from "../components/Nav/TopNavbar";
+import Naira from "react-naira"
 
 import { Link } from "react-router-dom";
 const KEY = process.env.REACT_APP_STRIPE;
@@ -111,7 +112,7 @@ const Cart = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="cart-product-price">${cartItem.price}</div>
+                  <div className="cart-product-price"><Naira>{cart.cartTotalAmount}</Naira></div>
                   <div className="cart-product-quantity">
                     <button onClick={() => handleDecreaseCart(cartItem)}>
                       -
@@ -120,7 +121,7 @@ const Cart = () => {
                     <button onClick={() => handleAddToCart(cartItem)}>+</button>
                   </div>
                   <div className="cart-product-total-price">
-                    ${cartItem.price * cartItem.cartQuantity}
+                    <Naira>{cartItem.price * cartItem.cartQuantity}</Naira>
                   </div>
                 </div>
               ))}
@@ -132,7 +133,7 @@ const Cart = () => {
             <div className="cart-checkout">
               <div className="subtotal">
                 <span>Subtotal</span>
-                <span className="amount">${cart.cartTotalAmount}</span>
+                <span className="amount"><Naira>{cart.cartTotalAmount}</Naira></span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
               {auth._id ? (
@@ -141,7 +142,7 @@ const Cart = () => {
                 image="https://avatars.githubusercontent.com/u/1486366?v=4"
                 billingAddress
                 shippingAddress
-                description={`Your total is $${cart.cartTotalAmount}`}
+                description={`Your total is ${cart.cartTotalAmount}`}
                 amount={cart.cartTotalAmount * 100}
                 token={onToken}
                 stripeKey={KEY}

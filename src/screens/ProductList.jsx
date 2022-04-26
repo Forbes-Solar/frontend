@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+
 import { addToCart } from "../redux/cartSlice";
 import { useGetAllProductsQuery } from "../redux/productsApi";
 import TopNavbar from "../components/Nav/TopNavbar";
@@ -7,11 +7,11 @@ import Naira from "react-naira"
 
 
 const Home = () => {
-  const { items: products, status } = useSelector((state) => state.products);
+  const { items:  status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
 
-  const { data, error, isLoading } = useGetAllProductsQuery();
+  const { data, isLoading } = useGetAllProductsQuery();
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
 import {logoutUser} from "../../redux/authSlice"
@@ -11,7 +11,7 @@ import LogoIcon from "../../assets/svg/Logo";
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
   const dispatch = useDispatch();
-  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  // const { cartTotalQuantity } = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
   return (

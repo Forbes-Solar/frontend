@@ -11,7 +11,7 @@ export const productsFetch = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        https://forbessolar.herokuapp.com/api/products/products
+       " https://forbessolar.herokuapp.com/api/products/"
       );
       return response.data;
     } catch (error) {

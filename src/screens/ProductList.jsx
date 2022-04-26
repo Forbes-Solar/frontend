@@ -7,6 +7,7 @@ import Naira from "react-naira"
 
 
 const Home = () => {
+  // eslint-disable-next-line
   const { items:products,  status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   

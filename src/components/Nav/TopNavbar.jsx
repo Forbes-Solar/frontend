@@ -69,7 +69,24 @@ export default function TopNavbar() {
           <UlWrapperRight className="flexNullCenter">
            {auth._id ? (
              <>
-             <li className="semiBold font15 pointer">
+            
+            <li className="semiBold font15 pointer">
+              <Link to="/" style={{ padding: "10px 30px 10px 0" }}>
+               
+               <DropDownLi>
+          <Dropbtn onClick={() => this.handleClick("DropDown")}>
+          Hi, {auth.token.name}
+          </Dropbtn>
+          <DropDownContent>
+            {" "}
+            <SubA onClick={() => this.handleClick("Link1")}>My Account</SubA>
+            <SubA onClick={() => this.handleClick("Link2")}>Orders</SubA>
+            <SubA onClick={() => this.handleClick("Link3")}>Inbox</SubA>
+          </DropDownContent>
+        </DropDownLi>
+              </Link>
+            </li>
+            <li className="semiBold font15 pointer">
               <Link to="/" style={{ padding: "10px 30px 10px 0" }} onClick={() => {
             dispatch(logoutUser(null));
             toast.warning("Logged out!", { position: "bottom-left" });
@@ -77,12 +94,7 @@ export default function TopNavbar() {
                 Logout
               </Link>
             </li>
-            <li className="semiBold font15 pointer">
-              <Link to="/" style={{ padding: "10px 30px 10px 0" }}>
-                {auth.token.name}
-              </Link>
-            </li>
-             </>
+             </> 
               
             
            ) : (
@@ -146,6 +158,50 @@ const UlWrapperRight = styled.ul`
   @media (max-width: 760px) {
     display: none;
   }
+`;
+
+
+
+const StyledLi = styled.li`
+  float: left;
+`;
+
+const Dropbtn = styled.div`
+  display: inline-block;
+  
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+`;
+
+const DropDownContent = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+`;
+
+const DropDownLi = styled(StyledLi)`
+  display: inline-block;
+  &:hover {
+    background-color: white;
+  }
+  &:hover ${DropDownContent} {
+    display: block;
+  }
+`;
+
+
+
+const SubA = styled.a`
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+ 
 `;
 
 

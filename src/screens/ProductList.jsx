@@ -6,12 +6,13 @@ import TopNavbar from "../components/Nav/TopNavbar";
 import Naira from "react-naira"
 
 
-const Home = () => {
-  const { items:  status } = useSelector((state) => state.products);
+const ProductList = () => {
+ // eslint-disable-next-line no-unused-vars
+  const {products,  status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   
 
-  const { data, isLoading } = useGetAllProductsQuery();
+  const { data } = useGetAllProductsQuery();
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -25,7 +26,6 @@ const Home = () => {
         <>
           <h2>New Arrivals</h2>
           <div className="products">
-            {isLoading}
             {data &&
               data?.map((product) => (
                 <div key={product.id} className="product">
@@ -53,4 +53,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ProductList;

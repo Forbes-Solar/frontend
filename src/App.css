@@ -314,4 +314,12 @@
   .cart-summary .clear-btn {
     margin-bottom: 2rem;
   }
+  .container{
+      display: flex;
+      margin-top: 10px;
+  }
+  .link {
+      text-decoration: none;
+      color: inherit;
+  }
 }

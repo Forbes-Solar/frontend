@@ -68,7 +68,6 @@ const Register = () => {
   const [user, setUser] = useState({
    
     name: "",
-    lastname: "",
     email: "",
     password: "",
   });
@@ -92,8 +91,6 @@ const Register = () => {
         <Title>CREATE AN ACCOUNT</Title>
         <Form onSubmit ={handleSubmit}>
           <Input placeholder="name" onChange={(e) => setUser({ ...user, name: e.target.value })}/>
-          <Input placeholder="last name" onChange={(e) => setUser({ ...user, lastname: e.target.value })} />
-         
           <Input placeholder="email" onChange={(e) => setUser({ ...user, email: e.target.value })} />
           <Input placeholder="password" onChange={(e) => setUser({ ...user, password: e.target.value })} />
           <Input placeholder="confirm password" onChange={(e) => setUser({ ...user, password: e.target.value })}/>

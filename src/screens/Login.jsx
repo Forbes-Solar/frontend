@@ -80,10 +80,10 @@ const Link = styled.a`
     });
   
     useEffect(() => {
-      if (auth._id) {
+      if (auth.token) {
         navigate("/products");
       }
-    }, [auth._id, navigate]);
+    }, [auth.token, navigate]);
   
     const handleSubmit = (e) => {
       e.preventDefault();

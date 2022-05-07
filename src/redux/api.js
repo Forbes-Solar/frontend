@@ -1,9 +1,9 @@
-export const url = "https://forbessolar.herokuapp.com/api";
+export const url = " http://localhost:5000/api";
 
 export const setHeaders = () => {
   const headers = {
     headers: {
-      "x-auth-token": localStorage.getItem("token"),
+      "x-access-token": localStorage.getItem("token"),
     },
   };
 

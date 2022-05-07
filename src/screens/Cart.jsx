@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+import { createOrder } from "../redux/OrderSlice";
 import { userRequest } from "../requestMethods";
-import StripeCheckout from "react-stripe-checkout";
+import { usePaystackPayment } from 'react-paystack';
 import {
   addToCart,
   clearCart,
@@ -18,6 +18,8 @@ import { Link } from "react-router-dom";
 const KEY = process.env.REACT_APP_STRIPE;
 
 const Cart = () => {
+
+  
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
@@ -28,20 +30,20 @@ const Cart = () => {
     setStripeToken(token);
   };
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await userRequest.post("/checkout/payment", {
-          tokenId: stripeToken.id,
-          amount: 500,
-        });
-        navigate("/success", {
-          stripeData: res.data,
-          products: cart, });
-      } catch {}
-    };
-    stripeToken && makeRequest();
-  });
+  // useEffect(() => {
+  //   const makeRequest = async () => {
+  //     try {
+  //       const res = await userRequest.post("/checkout/payment", {
+  //         tokenId: stripeToken.id,
+  //         amount: 500,
+  //       });
+  //       navigate("/success", {
+  //         stripeData: res.data,
+  //         products: cart, });
+  //     } catch {}
+  //   };
+  //   stripeToken && makeRequest();
+  // });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,7 +64,56 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
+  const config = {
+    reference: (new Date()).getTime().toString(),
+    email: "user@example.com",
+    amount: cart.cartTotalAmount * 100,
+    publicKey: 'pk_test_976d2df9b3c31f58eee6caba6e4836120bb3201c',
+};
+
+// you can call this function anything
+const onSuccess = (reference) => {
+  // Implementation for whatever you want to do with reference and after success call.
+  console.log(reference);
+};
+
+// you can call this function anything
+const onClose = () => {
+  // implementation for  whatever you want to do when the Paystack dialog closed.
+  console.log('closed')
+}
+
+  const PaystackHookExample = () => {
+    const initializePayment = usePaystackPayment(config);
+    return (
+      <div>
+          <button onClick={() => {
+              initializePayment(onSuccess, onClose)
+          }}>CheckOut</button>
+      </div>
+    );
+};
+
+// const [order, setOrder] = useState(cart.cartItems)
+
+const handleSubmit = (e) => {
+  
+
+ 
+  dispatch(createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+  }));
+};
   return (
+
+    
    
     <div className="cart-container">
       <TopNavbar/>
@@ -136,19 +187,10 @@ const Cart = () => {
                 <span className="amount"><Naira>{cart.cartTotalAmount}</Naira></span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
-              {auth._id ? (
-                <StripeCheckout
-                name="Forbes"
-                image="https://avatars.githubusercontent.com/u/1486366?v=4"
-                billingAddress
-                shippingAddress
-                description={`Your total is ${cart.cartTotalAmount}`}
-                amount={cart.cartTotalAmount * 100}
-                token={onToken}
-                stripeKey={KEY}
-              >
-               <button>Check out</button>
-              </StripeCheckout>
+              {auth.token ? (
+               <button className="clear-btn" onClick={() =>handleSubmit()}>
+               Checkout
+             </button>
                 
               ) : (
                 <button

@@ -50,7 +50,7 @@ export default function TopNavbar() {
             </li>
             <li className="semiBold font15 pointer">
               <Link activeClass="active" style={{ padding: "10px 15px" }} to="/about" spy={true} smooth={true} offset={-80}>
-                About
+              About
               </Link>
             </li>
             
@@ -67,21 +67,23 @@ export default function TopNavbar() {
             </li>
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
-           {auth._id ? (
+           {auth.token ? (
              <>
             
             <li className="semiBold font15 pointer">
               <Link to="/" style={{ padding: "10px 30px 10px 0" }}>
                
                <DropDownLi>
-          <Dropbtn onClick={() => this.handleClick("DropDown")}>
-          Hi, {auth.token.name}
+          <Dropbtn><Link to="/app/">
+          Hi, {}
+          </Link>
           </Dropbtn>
           <DropDownContent>
             {" "}
-            <SubA onClick={() => this.handleClick("Link1")}>My Account</SubA>
-            <SubA onClick={() => this.handleClick("Link2")}>Orders</SubA>
-            <SubA onClick={() => this.handleClick("Link3")}>Inbox</SubA>
+            <SubA><Link  to="/app/user">My Account </Link></SubA>
+            <SubA><Link  to="/app/order">Orders </Link></SubA>
+            <SubA><Link  to="/app/">Inbox</Link></SubA>
+            
           </DropDownContent>
         </DropDownLi>
               </Link>

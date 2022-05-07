@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
-import { url, setHeaders } from "./api";
+import { publicRequest, userRequest } from "../requestMethods"
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (values, { rejectWithValue }) => {
     try {
-      const token = await axios.post(`${url}/auth/register`, {
+      const token = await publicRequest.post('/auth/register', {
        
         name: values.name,
         lastname: values.lastname,
@@ -41,12 +41,13 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (values, { rejectWithValue }) => {
     try {
-      const token = await axios.post(`${url}/auth/login`, {
+      const token = await publicRequest.post('/auth/login', {
         email: values.email,
         password: values.password,
       });
 
       localStorage.setItem("token", token.data);
+      console.log(token.data);
       return token.data;
     } catch (error) {
       console.log(error.response);
@@ -59,7 +60,7 @@ export const getUser = createAsyncThunk(
   "auth/getUser",
   async (id, { rejectWithValue }) => {
     try {
-      const token = await axios.get(`${url}/user/${id}`, setHeaders());
+      const token = await userRequest.get(`/user/${id}`);
 
       localStorage.setItem("token", token.data);
 
@@ -96,9 +97,8 @@ const authSlice = createSlice({
       return {
         ...state,
         token: "",
-        username: "",
+        name: "",
         email: "",
-        _id: "",
         registerStatus: "",
         registerError: "",
         loginStatus: "",

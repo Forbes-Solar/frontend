@@ -39,7 +39,7 @@ export default function User() {
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">{auth.token.name}</span>
+              <span className="userShowUsername">{auth.token.data.data.name}</span>
               
             </div>
           </div>
@@ -51,20 +51,20 @@ export default function User() {
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.dob}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.dob}</span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.phone}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.phone}</span>
             </div>
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.email}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.email}</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.address}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.address}</span>
             </div>
           </div>
         </div>

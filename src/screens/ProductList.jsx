@@ -32,9 +32,7 @@ const ProductList = () => {
                   <h3>{product.name}</h3>
                   <img src={product.img} alt={product.name} />
                   
-                  <div className="details">
-                    <span>{product.desc}</span>
-                  </div>
+                 
                     <span className="price"><Naira>{product.price}</Naira></span>
                 
                   <button onClick={() => handleAddToCart(product)}>

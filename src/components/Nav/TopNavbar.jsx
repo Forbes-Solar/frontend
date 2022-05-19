@@ -67,7 +67,7 @@ export default function TopNavbar() {
             </li>
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
-           {auth.token ? (
+           {auth.token? (
              <>
             
             <li className="semiBold font15 pointer">
@@ -75,7 +75,7 @@ export default function TopNavbar() {
                
                <DropDownLi>
           <Dropbtn><Link to="/app/">
-          Hi, {}
+          Hi, {auth.token.data.data.name}
           </Link>
           </Dropbtn>
           <DropDownContent>

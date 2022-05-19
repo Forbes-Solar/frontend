@@ -15,7 +15,7 @@ import TopNavbar from "../components/Nav/TopNavbar";
 import Naira from "react-naira"
 
 import { Link } from "react-router-dom";
-const KEY = process.env.REACT_APP_STRIPE;
+
 
 const Cart = () => {
 
@@ -23,12 +23,10 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
-  const [stripeToken, setStripeToken] = useState(null);
+
   
 
-  const onToken = (token) => {
-    setStripeToken(token);
-  };
+ 
 
   // useEffect(() => {
   //   const makeRequest = async () => {

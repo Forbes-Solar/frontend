@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {url, setHeaders} from "./api"
 import axios from "axios";
-import {  userRequest } from "../requestMethods"
+// import {  userRequest } from "../requestMethods"
 
 
 export const createOrder= createAsyncThunk(

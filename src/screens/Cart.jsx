@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../redux/OrderSlice";
-import { userRequest } from "../requestMethods";
-import { usePaystackPayment } from 'react-paystack';
+// import { userRequest } from "../requestMethods";
+// import { usePaystackPayment } from 'react-paystack';
 import {
   addToCart,
   clearCart,
@@ -63,35 +63,35 @@ const Cart = () => {
     dispatch(clearCart());
   };
 
-  const config = {
-    reference: (new Date()).getTime().toString(),
-    email: "user@example.com",
-    amount: cart.cartTotalAmount * 100,
-    publicKey: 'pk_test_976d2df9b3c31f58eee6caba6e4836120bb3201c',
-};
+//   const config = {
+//     reference: (new Date()).getTime().toString(),
+//     email: "user@example.com",
+//     amount: cart.cartTotalAmount * 100,
+//     publicKey: 'pk_test_976d2df9b3c31f58eee6caba6e4836120bb3201c',
+// };
 
-// you can call this function anything
-const onSuccess = (reference) => {
-  // Implementation for whatever you want to do with reference and after success call.
-  console.log(reference);
-};
+// // you can call this function anything
+// const onSuccess = (reference) => {
+//   // Implementation for whatever you want to do with reference and after success call.
+//   console.log(reference);
+// };
 
-// you can call this function anything
-const onClose = () => {
-  // implementation for  whatever you want to do when the Paystack dialog closed.
-  console.log('closed')
-}
+// // you can call this function anything
+// const onClose = () => {
+//   // implementation for  whatever you want to do when the Paystack dialog closed.
+//   console.log('closed')
+// }
 
-  const PaystackHookExample = () => {
-    const initializePayment = usePaystackPayment(config);
-    return (
-      <div>
-          <button onClick={() => {
-              initializePayment(onSuccess, onClose)
-          }}>CheckOut</button>
-      </div>
-    );
-};
+//   const PaystackHookExample = () => {
+//     const initializePayment = usePaystackPayment(config);
+//     return (
+//       <div>
+//           <button onClick={() => {
+//               initializePayment(onSuccess, onClose)
+//           }}>CheckOut</button>
+//       </div>
+//     );
+// };
 
 // const [order, setOrder] = useState(cart.cartItems)
 

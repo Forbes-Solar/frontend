@@ -30,7 +30,7 @@ const ProductList = () => {
               data?.map((product) => (
                 <div key={product.id} className="product">
                   
-                  <img src={product.img} alt={product.name} />
+                  <img src={product.img} alt={product.title} />
                   
                  <h5>{product.title}</h5>
                     <span className="price"><Naira>{product.price}</Naira></span>

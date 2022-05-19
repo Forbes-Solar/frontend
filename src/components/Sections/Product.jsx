@@ -105,7 +105,7 @@ const Product = ({ item }) => {
       </Info>
      
     </Container>
-    <Title>{item.title}</Title>
+    <Title> <Link to={`/product/${item._id}`}>{item.title}</Link></Title>
     <Price><Naira>{item.price}</Naira> </Price>
     </div>
   );

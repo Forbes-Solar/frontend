@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 import { useGetAllProductsQuery } from "../redux/productsApi";
 import TopNavbar from "../components/Nav/TopNavbar";
@@ -32,7 +32,7 @@ const ProductList = () => {
                   
                   <img src={product.img} alt={product.title} />
                   
-                 <h5>{product.title}</h5>
+                 <h5><Link to={`/product/${product._id}`}>{product.title}</Link></h5>
                     <span className="price"><Naira>{product.price}</Naira></span>
                 
                   <button onClick={() => handleAddToCart(product)}>

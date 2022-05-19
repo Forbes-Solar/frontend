@@ -21,7 +21,7 @@ const Products = ({ cat, filters, sort }) => {
         const res = await axios.get(
           cat
             ? `http://localhost:5000/api/products/}`
-            : "https://forbessolar.herokuapp.com/api/products/"
+            : "https://forbessolar.herokuapp.com/api/products/products"
         );
         setProducts(res.data);
       } catch (err) {}

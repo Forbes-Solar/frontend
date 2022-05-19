@@ -152,10 +152,10 @@ const handleSubmit = (e) => {
               cart.cartItems.map((cartItem) => (
                 <div className="cart-item" key={cartItem.id}>
                   <div className="cart-product">
-                    <img src={cartItem.img} alt={cartItem.name} />
+                    <img src={cartItem.img} alt={cartItem.titlr} />
                     <div>
-                      <h3>{cartItem.name}</h3>
-                      <p>{cartItem.desc}</p>
+                      <h3>{cartItem.title}</h3>
+                      
                       <button onClick={() => handleRemoveFromCart(cartItem)}>
                         Remove
                       </button>

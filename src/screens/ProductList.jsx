@@ -29,10 +29,10 @@ const ProductList = () => {
             {data &&
               data?.map((product) => (
                 <div key={product.id} className="product">
-                  <h3>{product.name}</h3>
+                  
                   <img src={product.img} alt={product.name} />
                   
-                 
+                 <h3>{product.title}</h3>
                     <span className="price"><Naira>{product.price}</Naira></span>
                 
                   <button onClick={() => handleAddToCart(product)}>

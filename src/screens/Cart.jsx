@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import  { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder } from "../redux/OrderSlice";
-// import { userRequest } from "../requestMethods";
+// import {publicRequest} from "../requestMethods"
+// import axios from "axios"
+import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3'
 // import { usePaystackPayment } from 'react-paystack';
 import {
   addToCart,
@@ -22,26 +23,6 @@ const Cart = () => {
   
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
-
-
-  
-
- 
-
-  // useEffect(() => {
-  //   const makeRequest = async () => {
-  //     try {
-  //       const res = await userRequest.post("/checkout/payment", {
-  //         tokenId: stripeToken.id,
-  //         amount: 500,
-  //       });
-  //       navigate("/success", {
-  //         stripeData: res.data,
-  //         products: cart, });
-  //     } catch {}
-  //   };
-  //   stripeToken && makeRequest();
-  // });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,52 +44,52 @@ const Cart = () => {
     dispatch(clearCart());
   };
 
-//   const config = {
-//     reference: (new Date()).getTime().toString(),
-//     email: "user@example.com",
-//     amount: cart.cartTotalAmount * 100,
-//     publicKey: 'pk_test_976d2df9b3c31f58eee6caba6e4836120bb3201c',
-// };
+  const config = {
+    public_key: 'FLWPUBK_TEST-57213ef758cd58f1b73363943876f779-X',
+    tx_ref: Date.now(),
+    amount: cart.cartTotalAmount,
+    currency: 'NGN',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: auth.token.data.data.user.email,
+      phonenumber: auth.token.data.data.user.phone,
+      name: ""
+    },
+    customizations: {
+      title: 'Forbes Solar',
+      description: 'Payment for items in cart',
+      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+    },
+  };
 
-// // you can call this function anything
-// const onSuccess = (reference) => {
-//   // Implementation for whatever you want to do with reference and after success call.
-//   console.log(reference);
-// };
+  const fwConfig = {
+    ...config,
+    text: 'Pay with Flutterwave!',
+    callback: (response) => {
+       console.log(response);
+      closePaymentModal() // this will close the modal programmatically
+    },
+    onClose: () => {},
+  };
 
-// // you can call this function anything
-// const onClose = () => {
-//   // implementation for  whatever you want to do when the Paystack dialog closed.
-//   console.log('closed')
-// }
 
-//   const PaystackHookExample = () => {
-//     const initializePayment = usePaystackPayment(config);
-//     return (
-//       <div>
-//           <button onClick={() => {
-//               initializePayment(onSuccess, onClose)
-//           }}>CheckOut</button>
-//       </div>
-//     );
-// };
 
-// const [order, setOrder] = useState(cart.cartItems)
 
-const handleSubmit = (e) => {
-  
-
- 
-  dispatch(createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
-  }));
-};
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const headers = {
+  //     'Content-Type': 'text/plain'
+  // };
+  //   const userData = {
+  //     userId: auth.token.data.data.user._id,
+  //     products: cart.cartItems,
+  //     amount: cart.cartTotalAmount
+  //   };
+  //   publicRequest.post("/orders/order", userData, headers).then((response) => {
+  //     console.log(response.error);
+  //     console.log(response.data);
+  //   });
+  // };
   return (
 
     
@@ -186,9 +167,8 @@ const handleSubmit = (e) => {
               </div>
               <p>Taxes and shipping calculated at checkout</p>
               {auth.token ? (
-               <button className="clear-btn" onClick={() =>handleSubmit()}>
-               Checkout
-             </button>
+               <FlutterWaveButton {...fwConfig} />
+             
                 
               ) : (
                 <button

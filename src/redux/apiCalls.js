@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
+import { publicRequest } from "../requestMethods";
+import {getOrderStart , getOrderSuccess, getOrderFailure}  from "./OrderSlice"
+
+
+const API_URL = "https://forbessolar.herokuapp.com/api/products/auth";
 
 export const signup = (name, password, email) => {
   return axios
@@ -10,7 +14,7 @@ export const signup = (name, password, email) => {
       email,
     })
     .then((response) => {
-      if (response.data.accessToken) {
+      if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
       console.log(response.data)
@@ -25,7 +29,7 @@ export const login = (email, password) => {
       password,
     })
     .then((response) => {
-      if (response.data.accessToken) {
+      if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 console.log(response.data)
@@ -39,5 +43,15 @@ export const logout = () => {
 
 export const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
+};
+
+export const getOrders = async (dispatch) => {
+  dispatch(getOrderStart());
+  try {
+    const res = await publicRequest.get("/products/products");
+    dispatch(getOrderSuccess(res.data));
+  } catch (err) {
+    dispatch(getOrderFailure());
+  }
 };
 

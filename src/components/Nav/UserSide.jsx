@@ -103,7 +103,7 @@ const Sidebar = () => {
     useEffect(() => {
         const curPath = window.location.pathname.split('app/')[1];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
-        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
+        setActiveIndex(curPath?.length === 0 ? 0 : activeItem);
     }, [location]);
 
     return ( 

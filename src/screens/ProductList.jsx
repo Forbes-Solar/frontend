@@ -6,6 +6,7 @@ import TopNavbar from "../components/Nav/TopNavbar";
 import Naira from "react-naira"
 
 
+
 const ProductList = () => {
  // eslint-disable-next-line no-unused-vars
   const {products,  status } = useSelector((state) => state.products);
@@ -13,7 +14,7 @@ const ProductList = () => {
   
 
   const { data } = useGetAllProductsQuery();
-
+  console.log(data)
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
    
@@ -26,8 +27,8 @@ const ProductList = () => {
         <>
           <h2>New Arrivals</h2>
           <div className="products">
-            {data &&
-              data?.map((product) => (
+            {data&&
+            data?.map((product) => (
                 <div key={product.id} className="product">
                   
                   <img src={product.img} alt={product.title} />

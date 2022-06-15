@@ -75,7 +75,7 @@ export default function TopNavbar() {
                
                <DropDownLi>
           <Dropbtn><Link to="/app/">
-          Hi, {auth.token.data.data.name}
+          Hi, {auth.token.data.data.user.firstname}
           </Link>
           </Dropbtn>
           <DropDownContent>

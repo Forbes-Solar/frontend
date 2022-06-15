@@ -39,7 +39,7 @@ export default function User() {
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">{auth.token.data.data.name}</span>
+              <span className="userShowUsername">{auth.token.data.data.user.firstname}</span>
               
             </div>
           </div>
@@ -47,24 +47,24 @@ export default function User() {
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.name}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.user.firstname}</span>
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.data.data.dob}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.user.dob}</span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.data.data.phone}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.user.phone}</span>
             </div>
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.data.data.email}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.user.email}</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
-              <span className="userShowInfoTitle">{auth.token.data.data.address}</span>
+              <span className="userShowInfoTitle">{auth.token.data.data.user.address}</span>
             </div>
           </div>
         </div>

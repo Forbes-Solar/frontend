@@ -4,7 +4,8 @@ import styled from "styled-components";
 // import ClientSlider from "../Elements/ClientSlider";
 import TopNavbar from "../Nav/TopNavbar"
 import ServiceBox from "../Elements/ServiceBox";
-import FullButton from "../Buttons/FullButton";
+// import FullButton from "../Buttons/FullButton";
+import {Col , Row} from "react-bootstrap"
 import Footer from "./Footer"
 // import Teams from "./Teams"
 // Assets
@@ -26,19 +27,30 @@ export default function Services() {
           <div className="container">
             <Advertising className="flexSpaceCenter">
               <AddLeft>
-                <h4 className="font15 semiBold">A few words about company</h4>
-                <h2 className="font40 extraBold">About</h2>
-                <p className="font12">
-                There are still 600 million people worldwide that don’t have access to electricity, and over 1 billion people suffer from blackout once in a while. Forbes Renewables was born with the permanent mission to change that, by providing clean, cheaper, no interrupted solar power to families, business, government organisations etc, one at a time!.
+                <h4 className="font20 semiBold">A few words about company</h4>
+                <h2 className="font60 extraBold">About</h2>
+                <p className="font15">
+                In Sub-Saharan Africa (SSA), 6 out of 10 people did not have access to electricity in 2016. This problem is not just confined to rural areas; a quarter of those without electricity in the region live in urban zones.
+
+In Nigeria, 62 percent of under-the-grid grid households cite high connection costs as a reason they are not connected to the grid. The Center for Global Development estimates that there may be up to 95 million people living in under-the-grid areas in Nigeria, Kenya, Tanzania, Ghana and Liberia alone.
+
                 </p>
-                <ButtonsRow className="flexNullCenter" style={{ margin: "30px 0"}}>
+                <br></br>
+                <p className="font15">
+                FSSTNL is providing Nigerian households and businesses with affordable and innovative PV
+                Solar solutions such as SAS (Stand-Alone Solar), Solar Water-Pumps and Solar Freezers with
+                 a flexible  lease-to-own repayment model that enables cost savings for commercial and
+                  residential users, bridging the gap in access to affordable electricity in Nigeria, 
+
+                </p>
+                {/* <ButtonsRow className="flexNullCenter" style={{ margin: "30px 0"}}>
                   <div style={{ width: "190px" }}>
                     <FullButton title="Get Started" action={() => alert("clicked")} />
                   </div>
                   <div style={{ width: "190px", marginLeft: "15px" }}>
                     <FullButton title="Contact Us" action={() => alert("clicked")} border />
                   </div>
-                </ButtonsRow>
+                </ButtonsRow> */}
               </AddLeft>
               <AddRight>
                 <AddRightInner>
@@ -47,7 +59,7 @@ export default function Services() {
                       <img src="https://5.imimg.com/data5/BA/JM/MY-4107417/1-500x500.jpg"alt="office" />
                     </AddImgWrapp1>
                     <AddImgWrapp2>
-                      <img src="https://powerwalker.com/photos/Inverter/PowerWalker%20Inverter%20PWM/3000/PowerWalker%20Inverter%203000%20PWM%20R%20side.jpg" alt="office" />
+                      <img src="https://i0.wp.com/benignblog.com/wp-content/uploads/2014/07/Power-Inverter-UPS-Benign-Blog.jpg?fit=600%2C600&ssl=1 " alt="office" />
                     </AddImgWrapp2>
                   </div>
                   <div className="flexNullCenter">
@@ -65,6 +77,8 @@ export default function Services() {
         </div>
       <div className="whiteBg" style={{ padding: "60px 0" }}>
         <div className="container">
+          <Row>
+            <Col sm="12" md="5" className="text-center text-md-left">
           <HeaderInfo>
             <h1 className="font40 extraBold">Our Mission</h1>
             <p className="font13">
@@ -74,6 +88,18 @@ export default function Services() {
               to homes and micro-businesses  in Nigeria
             </p>
           </HeaderInfo>
+          </Col>
+          <Col sm="12" md="5" className="text-center text-md-left">
+          <HeaderInfo>
+            <h1 className="font40 extraBold">Our Vision</h1>
+            <p className="font13">
+            To become a major player in equipment lease financing of solar systems to micro businesses
+
+            </p>
+          </HeaderInfo>
+          </Col>
+          
+          </Row>
           <ServiceBoxRow className="flex">
             <ServiceBoxWrapper>
               <ServiceBox
@@ -148,11 +174,11 @@ margin-top: 50px;
     margin: 80px 0 0px 0;
   }
 `;
-const ButtonsRow = styled.div`
-  @media (max-width: 860px) {
-    justify-content: space-between;
-  }
-`;
+// const ButtonsRow = styled.div`
+//   @media (max-width: 860px) {
+//     justify-content: space-between;
+//   }
+// `;
 const AddLeft = styled.div`
   width: 50%;
   p {

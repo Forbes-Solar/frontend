@@ -17,9 +17,7 @@ export default function Contact() {
           <InnerWrapper className="flexSpaceCenter" style={{ padding: "30px 0" }}>
             <Link className="flexCenter animate pointer" to="home" smooth={true} offset={-80}>
               <LogoImg />
-              <h1 className="font15 extraBold whiteColor" style={{ marginLeft: "15px" }}>
-              Forbes
-              </h1>
+             
             </Link>
             <StyleP className="whiteColor font13">
               © {getCurrentYear()} - <span className="purpleColor font13">Forbes</span> All Right Reserved

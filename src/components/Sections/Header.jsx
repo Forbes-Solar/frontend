@@ -69,7 +69,7 @@ export default function Header() {
                 <img src="https://5.imimg.com/data5/BA/JM/MY-4107417/1-500x500.jpg"alt="office" />
               </AddImgWrapp1>
               <AddImgWrapp2>
-                <img src="https://powerwalker.com/photos/Inverter/PowerWalker%20Inverter%20PWM/3000/PowerWalker%20Inverter%203000%20PWM%20R%20side.jpg" alt="office" />
+                <img src="https://i0.wp.com/benignblog.com/wp-content/uploads/2014/07/Power-Inverter-UPS-Benign-Blog.jpg?fit=600%2C600&ssl=1 " alt="office" />
               </AddImgWrapp2>
             </div>
             <div className="flexNullCenter">

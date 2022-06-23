@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addToCart } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
-import Naira from "react-naira"
+// import Naira from "react-naira"
 import TopNavbar from "../components/Nav/TopNavbar";
 
 
@@ -131,7 +131,7 @@ const Product = () => {
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
           
-          <Price><Naira>{product.price}</Naira></Price>
+          <Price>{product.price}</Price>
           
           <AddContainer>
             <AmountContainer>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 import { useGetAllProductsQuery } from "../redux/productsApi";
 import TopNavbar from "../components/Nav/TopNavbar";
-import Naira from "react-naira"
+// import Naira from "react-naira"
 
 
 
@@ -34,7 +34,7 @@ const ProductList = () => {
                   <img src={product.img} alt={product.title} />
                   
                  <h5><Link to={`/product/${product._id}`}>{product.title}</Link></h5>
-                    <span className="price"><Naira>{product.price}</Naira></span>
+                    <span className="price">{product.price}</span>
                 
                   <button onClick={() => handleAddToCart(product)}>
                     Add To Cart

@@ -13,7 +13,7 @@ import {
   removeFromCart,
 } from "../redux/cartSlice";
 import TopNavbar from "../components/Nav/TopNavbar";
-import Naira from "react-naira"
+// import Naira from "react-naira"
 
 import { Link } from "react-router-dom";
 
@@ -142,7 +142,7 @@ const Cart = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="cart-product-price"><Naira>{cart.cartTotalAmount}</Naira></div>
+                  <div className="cart-product-price">{cart.cartTotalAmount}</div>
                   <div className="cart-product-quantity">
                     <button onClick={() => handleDecreaseCart(cartItem)}>
                       -
@@ -151,7 +151,7 @@ const Cart = () => {
                     <button onClick={() => handleAddToCart(cartItem)}>+</button>
                   </div>
                   <div className="cart-product-total-price">
-                    <Naira>{cartItem.price * cartItem.cartQuantity}</Naira>
+                    {cartItem.price * cartItem.cartQuantity}
                   </div>
                 </div>
               ))}
@@ -163,7 +163,7 @@ const Cart = () => {
             <div className="cart-checkout">
               <div className="subtotal">
                 <span>Subtotal</span>
-                <span className="amount"><Naira>{cart.cartTotalAmount}</Naira></span>
+                <span className="amount">{cart.cartTotalAmount}</span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
               {auth.token ? (

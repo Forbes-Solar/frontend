@@ -2,7 +2,7 @@ import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { Badge, Layout, Menu, message } from "antd";
 import { sumBy } from 'lodash';
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { HashRouter, Link, Route, Routes } from "react-router-dom";
 import logo from "./assets/images/logo.png";
 import Auth from "./Auth";
 import Cart from './containers/Cart';
@@ -104,7 +104,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout>
         {renderHeader()}
         <Content className="app-content">
@@ -159,7 +159,7 @@ function App() {
         </Content>
         <Footer style={{ textAlign: "center" }}>Forbes Solar @2022</Footer>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

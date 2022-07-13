@@ -64,7 +64,7 @@ function Cart() {
       <div>
           <button onClick={() => {
               initializePayment(onSuccess, onClose)
-          }}>Paystack Hooks Implementation</button>
+          }}>Checkout</button>
       </div>
     );
   };

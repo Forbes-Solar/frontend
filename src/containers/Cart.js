@@ -37,18 +37,25 @@ function Cart() {
   const [editItem, setEditItem] = useState(null);
   const [quantity, setQuantity] = useState(null);
   const [showResultModal, setShowResultModal] = useState(false);
-
+  const total = sumBy(cartItems, (item) => item.amount);
 
   const config = {
     reference: (new Date()).getTime().toString(),
-    email:"user@example.com",
-    amount: 20000,
+    email: auth?.data?.email,
+    amount: total * 100,
     publicKey: 'pk_test_a5d539d4bf979cdf1f4b3322e8b185e20ebce9f2',
   };
   
   // you can call this function anything
   const onSuccess = (reference) => {
-  // Implementation for whatever you want to do with reference and after success call.
+    dispatch(checkout(reference)).then((res) => {
+      if (res.payload.status) {
+        clearCart();
+        setShowResultModal(true);
+      } else {
+        message.error(res.payload.message);
+      }
+    });
   console.log(reference);
   };
   
@@ -209,7 +216,7 @@ function Cart() {
   ];
 
   const renderCheckout = () => {
-    const total = sumBy(cartItems, (item) => item.amount);
+    
     if (cartItems?.length > 0) {
       return (
         <center>

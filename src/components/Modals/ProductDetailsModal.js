@@ -29,7 +29,7 @@ function ProductDetailsModal(props) {
 
   const handleAddToCart = (item) => {
     const data = {
-      _productId: item._id,
+      productId: item._id,
       quantity,
     };
     dispatch(addToCart(data)).then((res) => {

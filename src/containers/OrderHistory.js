@@ -45,10 +45,10 @@ function OrderHistory() {
     const columns = [
       {
         title: "Product",
-        dataIndex: "_product",
-        key: "_product",
+        dataIndex: "product",
+        key: "product",
         render: (item) => {
-          return item?.name;
+          return item?.title;
         },
       },
       { title: "Price ($)", dataIndex: "price", key: "price", align: "right" },

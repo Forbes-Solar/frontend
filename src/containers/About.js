@@ -5,8 +5,14 @@ import {Bank2, Check2, Archive, DoorOpen} from 'react-bootstrap-icons'
 
 const h1 = {
     textAlign: 'center',
-    paddingTop: '100px',
+    paddingTop: '100px', 
      color: "#0B093B"
+}
+
+const icons ={
+    color: "#0B093B",
+    height: '100px', 
+    width: '100px'
 }
 
 const p = {
@@ -46,20 +52,20 @@ to homes and micro-businesses in Nigeria</p>
 </Container>
 <div class="container ">
   <div class="row">
-    <div class="col-sm text-center">
-        <Bank2 style={{height: '100px', width: '100px'}}></Bank2>
+    <div class="col-sm text-center" >
+        <Bank2 style={icons}></Bank2>
     <h4>Acountable</h4>
     </div>
     <div class="col-sm text-center">
-        <Check2 style={{height: '100px', width: '100px'}}></Check2>
+        <Check2 style={icons}></Check2>
     <h4>Respectful</h4>
     </div>
     <div class="col-sm text-center" >
-        <Archive style={{height: '100px', width: '100px'}}></Archive>
+        <Archive style={icons} ></Archive>
     <h4>innovative</h4>
     </div>
     <div class="col-sm text-center">
-        <DoorOpen style={{height: '100px', width: '100px'}}></DoorOpen>
+        <DoorOpen style={icons}></DoorOpen>
     <h4>Transparent</h4>
     </div>
   </div>

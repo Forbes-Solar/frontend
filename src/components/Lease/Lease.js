@@ -8,7 +8,9 @@ const col = {
 
 const text ={
     marginTop: "100px",
-   color: "#0B093B"
+   color: "#FFA500",
+   fontWeight: "bold",
+  
 }
 
 function Lease () {
@@ -21,7 +23,7 @@ function Lease () {
             <Col className="text-center">
             <h1 style={text}>Lease to own</h1>
             <p style={{ color: "#0B093B",}}>Know more about our lease to own platform</p>
-            <Button>Get Started</Button>
+            <Button style={{backgroundColor:"#FFA500"}}>Get Started</Button>
             </Col>
         </Row>
         </Container>

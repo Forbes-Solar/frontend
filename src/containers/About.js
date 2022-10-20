@@ -6,13 +6,20 @@ import {Bank2, Check2, Archive, DoorOpen} from 'react-bootstrap-icons'
 const h1 = {
     textAlign: 'center',
     paddingTop: '100px', 
-     color: "#0B093B"
+     color: "#FFA500"
+}
+const h2 = {
+    textAlign: 'center',
+    
+     color: "#FFA500"
 }
 
 const icons ={
-    color: "#0B093B",
-    height: '100px', 
-    width: '100px'
+    color: "#FFA500",
+    height: '200px', 
+    width: '200px',
+    marginBottom: '50px',
+    marginTop: '50px',
 }
 
 const p = {
@@ -27,7 +34,7 @@ return (
 <Row>
     <Col sm="12" md="5" className="text-left text-md-left">
     <h1 style={h1}>About Us</h1>
-    <p style={{ color: "#0B093B",}} className="text-left" >In Sub-Saharan Africa (SSA), 6 out of 10 people did not have access to electricity in 2016. This problem is not just confined to rural areas; a quarter of those without electricity in the region live in urban zones. In Nigeria, 62 percent of under-the-grid grid households cite high connection costs as a reason they are not connected to the grid. The Center for Global Development estimates that there may be up to 95 million people living in under-the-grid areas in Nigeria, Kenya, Tanzania, Ghana and Liberia alone.
+    <p style={{ color: "#0B093B",}} className="text-center" >In Sub-Saharan Africa (SSA), 6 out of 10 people did not have access to electricity in 2016. This problem is not just confined to rural areas; a quarter of those without electricity in the region live in urban zones. In Nigeria, 62 percent of under-the-grid grid households cite high connection costs as a reason they are not connected to the grid. The Center for Global Development estimates that there may be up to 95 million people living in under-the-grid areas in Nigeria, Kenya, Tanzania, Ghana and Liberia alone.
     FSSTNL is providing Nigerian households and businesses with affordable and innovative PV Solar solutions such as SAS (Stand-Alone Solar), Solar Water-Pumps and Solar Freezers with a flexible lease-to-own repayment model that enables cost savings for commercial and residential users, bridging the gap in access to affordable electricity in Nigeria
     </p>
     </Col>
@@ -39,14 +46,14 @@ return (
 </Row>
 
 <Row>
-    <Col sm="12" md="7" className="text-center text-md-left">
-    <h1 style={{ color: "#0B093B",}}>Our Mission</h1>
-    <p style={{ color: "#0B093B",}}>Make acquisition of productive-use solar equipment easy and affordable
+    <Col sm="12" md="5" >
+    <h1 style={h2}>Our Mission</h1>
+    <p style={{ color: "#0B093B",}} className="text-center">Make acquisition of productive-use solar equipment easy <br></br> and affordable
 to homes and micro-businesses in Nigeria</p>
     </Col>
-    <Col className="text-center text-md-left">
-    <h1 style={{ color: "#0B093B",}} >Our Vision</h1>
-    <p style={{ color: "#0B093B",}}>To become a major player in equipment lease financing of solar systems to micro businesses</p>
+    <Col >
+    <h1 style={h2} >Our Vision</h1>
+    <p style={{ color: "#0B093B",}} className="text-center">To become a major player in equipment lease financing <br></br> of solar systems to micro businesses</p>
     </Col>
 </Row>
 </Container>

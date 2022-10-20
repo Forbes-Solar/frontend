@@ -19,7 +19,7 @@ import { photos } from "../../assets/images/Photos";
   return (
     <div className="App">
 
-        <h1 style={{ color: "#0B093B",}}>Our Projects</h1>
+        <h1 style={{color:"#FFA500", fontWeight: "bold",}}>Our Projects</h1>
       <Gallery photos={photos} renderImage={imageRenderer}></Gallery>
     </div>
   );

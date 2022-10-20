@@ -52,17 +52,18 @@ function App() {
           onClick={handleLogout}
         >
           <Menu.Item key="home">
-            <Link to="/">Home</Link>
+            <Link to="/" style={{color:"#FFA500", fontWeight: "bold",}} >Home</Link>
           </Menu.Item>
           <Menu.Item key="home">
-            <Link to="/about">About</Link>
+            <Link to="/about" style={{color:"#FFA500", fontWeight: "bold",}}>About</Link>
+
           </Menu.Item>
           <Menu.Item key="home">
-            <Link to="/shop">Shop</Link>
+            <Link to="/shop" style={{color:"#FFA500", fontWeight: "bold",}}>Shop</Link>
           </Menu.Item>
           
           <Menu.Item key="home">
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" style={{color:"#FFA500", fontWeight: "bold",}}>Contact</Link>
           </Menu.Item>
           {auth?.status ? (
             <>
@@ -91,10 +92,10 @@ function App() {
             <>
           
               <Menu.Item key="login">
-                <Link to="login">Login</Link>
+                <Link to="login" style={{color:"#FFA500", fontWeight: "bold",}}>Login</Link>
               </Menu.Item>
               <Menu.Item key="register">
-                <Link to="register">Register</Link>
+                <Link to="register" style={{color:"#FFA500", fontWeight: "bold",}}>Register</Link>
               </Menu.Item>
             </>
           )}
